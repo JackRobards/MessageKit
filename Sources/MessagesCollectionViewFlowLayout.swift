@@ -60,7 +60,13 @@ class MessagesCollectionViewFlowLayout: UICollectionViewFlowLayout {
         guard let messagesCollectionView = collectionView as? MessagesCollectionView else { return .zero }
         guard let messageType = messagesCollectionView.messagesDataSource?.messageForItem(at: indexPath, in: messagesCollectionView) else { return .zero }
         
-        let containerHeight = messageContainerSizeCalculator.messageContainerSizeFor(messageType: messageType, with: self).height
+        var containerHeight = messageContainerSizeCalculator.messageContainerSizeFor(messageType: messageType, with: self).height
+        
+        let minimumHeight: CGFloat = 34 // fixed on a later branch but a temporary hack to get example working
+        
+        if containerHeight < minimumHeight {
+            containerHeight = 34
+        }
         
         return CGSize(width: itemWidth, height: containerHeight)
   
@@ -98,6 +104,10 @@ class MessagesCollectionViewFlowLayout: UICollectionViewFlowLayout {
         layoutAttributes.avatarSize = avatarSize
         layoutAttributes.messageContainerSize = messageContainerSize
 
+    }
+    
+    override func shouldInvalidateLayout(forBoundsChange newBounds: CGRect) -> Bool {
+        return true
     }
 
 }

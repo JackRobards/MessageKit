@@ -35,6 +35,7 @@ class MessageContainerSizeCalculator {
         switch messageType.data {
         case .text(let text):
             let messageContainerHeight = text.height(considering: messageContainerWidth, font: layout.messageFont)
+            //print("W: \(messageContainerWidth), H: \(messageContainerHeight)")
             return CGSize(width: messageContainerWidth, height: messageContainerHeight)
         default:
             // TODO: Heights for other types of message data

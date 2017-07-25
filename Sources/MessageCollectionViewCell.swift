@@ -66,8 +66,6 @@ class MessageCollectionViewCell: UICollectionViewCell {
     
     override func apply(_ layoutAttributes: UICollectionViewLayoutAttributes) {
         guard let attributes = layoutAttributes as? MessagesCollectionViewLayoutAttributes else { return }
-        print(attributes.avatarSize)
-        print(attributes.messageContainerSize)
         let avatarWidth = attributes.avatarSize.width
         let avatarHeight = attributes.avatarSize.height
         
